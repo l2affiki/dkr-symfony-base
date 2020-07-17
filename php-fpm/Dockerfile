@@ -1,4 +1,4 @@
-FROM php:7.2-fpm 
+FROM php:7.2-fpm as builder
 
 RUN apt update && \
     apt install -y wget
@@ -6,3 +6,6 @@ RUN apt update && \
 WORKDIR /root
 COPY install /root/install
 RUN /root/install/composer.sh
+
+FROM php:7.2-fpm as build1
+COPY --from=builder /root/composer.phar /root/
