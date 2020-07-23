@@ -4,7 +4,7 @@ networks:
   web:
 services:
   nginx:
-    build: ./nginx
+    image: ngn:latest
     depends_on:
       - phpfpm
     volumes:
@@ -14,7 +14,7 @@ services:
     ports:
       - "80:80"
   phpfpm:
-    build: ./php-fpm
+    image: fpm:latest
     volumes:
       - ./www:/var/www/html
     networks:
