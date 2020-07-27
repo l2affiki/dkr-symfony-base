@@ -6,10 +6,10 @@ then
 fi
 case $1 in
     ngn)
-	docker run -d --name sym.ngn -v $(pwd)/www:/usr/share/nginx/html:ro -p 80:80 --network web ngn:latest
+	podman run -d --name sym.ngn -v $(pwd)/www:/usr/share/nginx/html:z -p 8080:80 ngn:latest
 	;;
     fpm)
-	docker run -d --name sym.php -v $(pwd)/www/:/var/www/html --network web fpm:latest
+	podman run -d --name sym.php -v $(pwd)/www/:/var/www/html:z -p 9000:9000 fpm:latest
 	;;
     *)
 	echo >&2 Invalid Name
